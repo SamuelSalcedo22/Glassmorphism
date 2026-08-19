@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor Glassmorphism</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Clases CSS personalizadas para el efecto Glass exacto */
+        .glass-panel {
+            background: rgba(45, 43, 42, 0.65); /* Tono oscuro semitransparente */
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+        }
+        
+        .glass-button {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease;
+        }
+
+        .glass-button:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        body {
+            /* Cargamos la imagen local con una capa oscura (0.4) encima para dar ambiente de cine */
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('./fondo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body class="min-h-screen w-full flex items-center justify-center font-sans text-white overflow-hidden selection:bg-white/30">
+
+    <!-- Contenedor Flex para alinear la barra lateral y el contenido principal -->
+    <div class="flex gap-8 items-center justify-center w-full max-w-[1200px] px-8 relative top-4">
+
+        <!-- 1. BARRA LATERAL IZQUIERDA -->
+        <aside class="glass-panel rounded-[40px] py-8 px-4 flex flex-col gap-8 items-center h-fit">
+            <!-- Play (Activo) -->
+            <button class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center bg-white/10 hover:bg-white/20 transition text-white">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+            </button>
+            <!-- Capas -->
+            <button class="text-white/50 hover:text-white transition-colors">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17L12 22L22 17"></path><path d="M2 12L12 17L22 12"></path><path d="M12 2L2 7L12 12L22 7L12 2Z"></path></svg>
+            </button>
+            <!-- Transmitir -->
+            <button class="text-white/50 hover:text-white transition-colors">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16.1A5 5 0 0 1 5.9 20M2 12.05A9 9 0 0 1 9.95 20M2 8V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6"></path><line x1="2" y1="20" x2="2.01" y2="20"></line></svg>
+            </button>
+            <!-- Bolsa -->
+            <button class="text-white/50 hover:text-white transition-colors">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            </button>
+            <!-- Buscar -->
+            <button class="text-white/50 hover:text-white transition-colors mt-2">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
+        </aside>
+
+        <!-- COLUMNA PRINCIPAL (Reproductor + Barra Inferior) -->
+        <div class="flex flex-col items-center gap-6">
+
+            <!-- 2. REPRODUCTOR PRINCIPAL -->
+            <main class="glass-panel p-5 rounded-[32px] w-[900px] flex flex-col gap-4">
+                
+                <!-- Cabecera del Marco (Atrás, Título, Pantalla Completa) -->
+                <header class="w-full flex justify-between items-center px-2">
+                    <!-- Botón Atrás -->
+                    <button class="w-9 h-9 rounded-full glass-button flex items-center justify-center text-white/80 hover:text-white">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    
+                    <!-- Título -->
+                    <h1 class="text-[15px] font-medium tracking-wide">Avengers : Endgame</h1>
+                    
+                    <!-- Botón Pantalla Completa -->
+                    <button class="w-9 h-9 rounded-xl glass-button flex items-center justify-center text-white/80 hover:text-white">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+                    </button>
+                </header>
+
+                <!-- Pantalla del Video (Interior) -->
+                <div class="w-full aspect-video rounded-2xl overflow-hidden relative bg-black shadow-inner">
+                    <!-- Frame de la película (puedes cambiar esta URL por la imagen real de Avengers) -->
+                    <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=2070&auto=format&fit=crop" alt="Pelicula" class="w-full h-full object-cover opacity-80">
+                    
+                    <!-- Sombra inferior para texto y barra de progreso -->
+                    <div class="absolute bottom-0 w-full h-2/3 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end pb-8 px-10">
+                        
+                        <!-- Subtítulos -->
+                        <p class="text-center font-medium text-[22px] tracking-wide mb-8 drop-shadow-lg">
+                            Avengers, Assemble !
+                        </p>
+
+                        <!-- Barra de progreso -->
+                        <div class="w-full h-[6px] bg-white/20 rounded-full relative cursor-pointer flex items-center">
+                            <!-- Progreso lleno -->
+                            <div class="absolute left-0 h-full bg-white rounded-full w-[65%]"></div>
+                            <!-- Botón deslizable -->
+                            <div class="absolute left-[65%] -translate-x-1/2 w-[18px] h-[18px] bg-white rounded-full shadow-lg border border-gray-200"></div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- 3. BARRA DE CONTROLES INFERIOR -->
+            <nav class="glass-panel rounded-full px-10 py-4 flex items-center justify-between w-[550px]">
+                
+                <!-- Reproducción (Izquierda) -->
+                <div class="flex items-center gap-8">
+                    <!-- Anterior -->
+                    <button class="text-white/60 hover:text-white transition">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+                    </button>
+                    <!-- Play grande -->
+                    <button class="text-white hover:scale-110 transition-transform">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    </button>
+                    <!-- Siguiente -->
+                    <button class="text-white/60 hover:text-white transition">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+                    </button>
+                </div>
+
+                <!-- Utilidades (Derecha) -->
+                <div class="flex items-center gap-8">
+                    <!-- Volumen -->
+                    <button class="text-white/60 hover:text-white transition">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                    </button>
+                    <!-- Subtítulos -->
+                    <button class="text-white/60 hover:text-white transition">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect><path d="M7 15h.01M11 15h2M17 15h.01M7 9h.01M11 9h2M17 9h.01"></path></svg>
+                    </button>
+                    <!-- Calidad -->
+                    <span class="text-[15px] font-medium text-white/80 cursor-pointer hover:text-white transition">1080p</span>
+                </div>
+            </nav>
+
+        </div>
+    </div>
+
+</body>
+</html>
