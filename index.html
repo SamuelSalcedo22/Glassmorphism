@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reproductor Glassmorphism</title>
+    <title>Reproductor Vision Pro Glass</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Clases CSS personalizadas para el efecto Glass exacto */
+        /* Efecto Glassmorphism exacto */
         .glass-panel {
-            background: rgba(45, 43, 42, 0.65); /* Tono oscuro semitransparente */
+            background: rgba(45, 43, 42, 0.65);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -26,7 +26,7 @@
         }
 
         body {
-            /* Cargamos la imagen local con una capa oscura (0.4) encima para dar ambiente de cine */
+            /* Fondo de la sala con filtro oscuro */
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('./fondo.jpg');
             background-size: cover;
             background-position: center;
@@ -37,11 +37,11 @@
 </head>
 <body class="min-h-screen w-full flex items-center justify-center font-sans text-white overflow-hidden selection:bg-white/30">
 
-    <!-- Contenedor Flex para alinear la barra lateral y el contenido principal -->
+    <!-- Contenedor Principal -->
     <div class="flex gap-8 items-center justify-center w-full max-w-[1200px] px-8 relative top-4">
 
-        <!-- 1. BARRA LATERAL IZQUIERDA -->
-        <aside class="glass-panel rounded-[40px] py-8 px-4 flex flex-col gap-8 items-center h-fit">
+        <!-- 1. BARRA LATERAL IZQUIERDA (Se añadió translate-y-12 para bajarla) -->
+        <aside class="glass-panel rounded-[40px] py-8 px-4 flex flex-col gap-8 items-center h-fit translate-y-12 relative z-10">
             <!-- Play (Activo) -->
             <button class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center bg-white/10 hover:bg-white/20 transition text-white">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
@@ -64,13 +64,13 @@
             </button>
         </aside>
 
-        <!-- COLUMNA PRINCIPAL (Reproductor + Barra Inferior) -->
-        <div class="flex flex-col items-center gap-6">
+        <!-- COLUMNA PRINCIPAL -->
+        <div class="flex flex-col items-center gap-6 relative z-20">
 
-            <!-- 2. REPRODUCTOR PRINCIPAL -->
-            <main class="glass-panel p-5 rounded-[32px] w-[750px] flex flex-col gap-4">
+            <!-- 2. REPRODUCTOR PRINCIPAL (Se ajustó a w-[780px]) -->
+            <main class="glass-panel p-5 rounded-[32px] w-[780px] flex flex-col gap-4">
                 
-                <!-- Cabecera del Marco (Atrás, Título, Pantalla Completa) -->
+                <!-- Cabecera -->
                 <header class="w-full flex justify-between items-center px-2">
                     <!-- Botón Atrás -->
                     <button class="w-9 h-9 rounded-full glass-button flex items-center justify-center text-white/80 hover:text-white">
@@ -86,12 +86,12 @@
                     </button>
                 </header>
 
-                <!-- Pantalla del Video (Interior) -->
+                <!-- Pantalla del Video -->
                 <div class="w-full aspect-video rounded-2xl overflow-hidden relative bg-black shadow-inner">
-                    <!-- Frame de la película (puedes cambiar esta URL por la imagen real de Avengers) -->
-                    <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=2070&auto=format&fit=crop" alt="Pelicula" class="w-full h-full object-cover opacity-80">
+                    <!-- IMAGEN DE LA PELÍCULA (Carga el archivo local) -->
+                    <img src="./pelicula.jpg" alt="Avengers Endgame" class="w-full h-full object-cover">
                     
-                    <!-- Sombra inferior para texto y barra de progreso -->
+                    <!-- Sombra inferior y subtítulos -->
                     <div class="absolute bottom-0 w-full h-2/3 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end pb-8 px-10">
                         
                         <!-- Subtítulos -->
@@ -100,9 +100,9 @@
                         </p>
 
                         <!-- Barra de progreso -->
-                        <div class="w-full h-[6px] bg-white/20 rounded-full relative cursor-pointer flex items-center">
-                            <!-- Progreso lleno -->
-                            <div class="absolute left-0 h-full bg-white rounded-full w-[65%]"></div>
+                        <div class="w-full h-[6px] bg-white/30 rounded-full relative cursor-pointer flex items-center">
+                            <!-- Progreso -->
+                            <div class="absolute left-0 h-full bg-white rounded-full w-[65%] shadow-[0_0_10px_rgba(255,255,255,0.5)]"></div>
                             <!-- Botón deslizable -->
                             <div class="absolute left-[65%] -translate-x-1/2 w-[18px] h-[18px] bg-white rounded-full shadow-lg border border-gray-200"></div>
                         </div>
@@ -111,7 +111,7 @@
             </main>
 
             <!-- 3. BARRA DE CONTROLES INFERIOR -->
-            <nav class="glass-panel rounded-full px-10 py-4 flex items-center justify-between w-[550px]">
+            <nav class="glass-panel rounded-full px-10 py-4 flex items-center justify-between w-[520px]">
                 
                 <!-- Reproducción (Izquierda) -->
                 <div class="flex items-center gap-8">
